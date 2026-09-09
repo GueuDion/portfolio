@@ -955,6 +955,163 @@
                 font-size: 1.8rem;
             }
         }
+
+        /* REFONTE VISUELLE ET COMPOSANTS INTERACTIFS */
+        :root {
+            --primary-dark: #08111f;
+            --secondary-dark: #101d31;
+            --accent-color: #64ffda;
+            --accent-strong: #64ffda;
+            --text-light: #e8eef8;
+            --text-gray: #91a0b8;
+            --white: #f8fbff;
+            --box-shadow: 0 24px 60px rgba(1, 8, 20, 0.35);
+        }
+
+        body {
+            background-color: var(--primary-dark);
+            background-image: radial-gradient(rgba(100, 255, 218, 0.08) 1px, transparent 1px), linear-gradient(135deg, rgba(255, 255, 255, 0.025), transparent 42%);
+            background-size: 12px 12px, 100% 100%;
+        }
+
+        header {
+            background: rgba(8, 17, 31, 0.78);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+        }
+
+        section { position: relative; overflow: hidden; }
+        section > .container { position: relative; z-index: 1; }
+        .manga-bg { position: absolute; z-index: 0; pointer-events: none; opacity: 0.16; filter: saturate(1.2) contrast(1.08); }
+        .manga-bg img { width: 100%; height: 100%; object-fit: cover; }
+        .manga-bg--home { width: 280px; height: 390px; right: -36px; top: 18%; transform: rotate(8deg); }
+        .manga-bg--about { width: 220px; height: 300px; left: -70px; bottom: 5%; transform: rotate(-12deg); }
+        .manga-bg--projects { width: 250px; height: 330px; right: -70px; top: 32%; transform: rotate(-9deg); }
+        .manga-bg--characters { width: 230px; height: 300px; left: -72px; top: 28%; transform: rotate(11deg); }
+        .manga-bg--skills { width: 250px; height: 340px; right: -72px; bottom: 7%; transform: rotate(13deg); }
+        .manga-bg--logos { width: 220px; height: 290px; left: -65px; top: 20%; transform: rotate(-8deg); }
+        .manga-bg--education { width: 210px; height: 280px; right: -62px; top: 18%; transform: rotate(7deg); }
+        .manga-bg--contact { width: 230px; height: 300px; left: -75px; bottom: 8%; transform: rotate(-10deg); }
+
+        section::after {
+            content: '';
+            position: absolute;
+            inset: 14px 0 auto;
+            height: 1px;
+            background: repeating-linear-gradient(90deg, var(--accent-color) 0 22px, transparent 22px 34px);
+            opacity: 0.35;
+            pointer-events: none;
+        }
+
+        .hero::before {
+            content: 'CODE / CREATE / REPAIR';
+            position: absolute;
+            right: 5%;
+            top: 18%;
+            color: rgba(100, 255, 218, 0.12);
+            font: 800 clamp(3rem, 10vw, 9rem)/0.9 'Montserrat', sans-serif;
+            letter-spacing: 0.02em;
+            max-width: 700px;
+            text-align: right;
+            pointer-events: none;
+        }
+
+        .hero::after {
+            content: 'SCANNING...';
+            position: absolute;
+            right: 6%;
+            bottom: 13%;
+            color: var(--accent-color);
+            font: 700 0.7rem/1 'Inter', sans-serif;
+            letter-spacing: 0.24em;
+            transform: rotate(-8deg);
+            opacity: 0.7;
+            pointer-events: none;
+        }
+
+        .hero-text, .hero-logo-container { position: relative; z-index: 1; }
+        .manga-accent { border: 2px solid var(--accent-color); background: var(--secondary-dark); box-shadow: 5px 5px 0 rgba(100, 255, 218, 0.2); overflow: hidden; }
+        .manga-accent img { width: 100%; height: 100%; object-fit: cover; }
+        .manga-accent--hero { position: absolute; width: 92px; height: 132px; right: -22px; top: 4px; transform: rotate(8deg); z-index: 2; }
+        .manga-accent--about { position: absolute; width: 86px; height: 118px; right: 14px; bottom: 14px; transform: rotate(-7deg); z-index: 2; }
+        .manga-strip { display: grid; grid-template-columns: 0.7fr 2fr; gap: 18px; align-items: center; margin-top: 30px; padding: 10px; border: 2px solid var(--accent-color); background: rgba(16, 29, 49, 0.8); box-shadow: 6px 6px 0 rgba(100, 255, 218, 0.18); }
+        .manga-strip img { width: 100%; height: 96px; object-fit: cover; }
+        .manga-strip p { color: var(--text-gray); font-size: 0.92rem; }
+        .manga-accent--timeline { width: 72px; height: 98px; float: right; margin: 0 0 8px 16px; transform: rotate(5deg); }
+        .manga-accent--contact { width: 98px; height: 132px; float: right; margin-left: 20px; transform: rotate(-6deg); }
+        .hero-text h1 { letter-spacing: -0.04em; }
+        .hero-text h2 { color: var(--accent-strong); }
+        .btn { border-radius: 2px; border: 2px solid var(--accent-color); box-shadow: 4px 4px 0 rgba(100, 255, 218, 0.28); }
+        .btn:hover { box-shadow: 7px 7px 0 rgba(100, 255, 218, 0.28); }
+        .btn:first-child { background: var(--accent-color); color: var(--primary-dark); }
+        .hero-logo { border-color: var(--accent-color); box-shadow: 18px 18px 0 rgba(100, 255, 218, 0.22); }
+        .section-title { letter-spacing: -0.03em; text-transform: uppercase; text-shadow: 3px 3px 0 rgba(100, 255, 218, 0.16); }
+        .section-title::after { background: var(--accent-strong); }
+        .project-card, .skill-category, .timeline-content, .contact-form { border: 2px solid rgba(232, 238, 248, 0.7); box-shadow: 7px 7px 0 rgba(0, 0, 0, 0.26); }
+        .project-card { border-radius: 2px; position: relative; }
+        .project-card::before, .skill-category::before, .timeline-content::before, .contact-form::before { content: ''; position: absolute; inset: 0; background-image: radial-gradient(rgba(100, 255, 218, 0.08) 1px, transparent 1px); background-size: 7px 7px; pointer-events: none; opacity: 0.5; }
+        .project-card:hover { border-color: var(--accent-color); box-shadow: 10px 10px 0 rgba(100, 255, 218, 0.2); }
+        .project-img { height: 180px; }
+        .project-img::after { content: ''; position: absolute; inset: 0; background: linear-gradient(135deg, transparent 55%, rgba(8, 17, 31, 0.5)); pointer-events: none; }
+        .project-content, .skill-category > *, .timeline-content > *, .contact-form > * { position: relative; z-index: 1; }
+        .project-content { padding: 18px; }
+        .project-description { margin-bottom: 14px; }
+        .project-tech { gap: 7px; margin-bottom: 14px; }
+        .tech-tag { border-radius: 999px; background: rgba(100, 255, 218, 0.1); color: var(--accent-color); padding: 4px 10px; }
+        .project-link { color: var(--accent-color); }
+        .project-filters { display: flex; flex-wrap: wrap; gap: 10px; margin: -20px 0 10px; }
+        .filter-btn { padding: 9px 16px; border: 2px solid rgba(255,255,255,0.35); border-radius: 2px; background: transparent; color: var(--text-gray); cursor: pointer; font: 700 0.78rem 'Inter', sans-serif; text-transform: uppercase; transition: var(--transition); }
+        .filter-btn:hover, .filter-btn.active { background: var(--accent-color); border-color: var(--accent-color); color: var(--primary-dark); }
+        .project-card.is-hidden { display: none; }
+        .project-kicker { color: var(--accent-strong); font-size: 0.75rem; font-weight: 700; letter-spacing: 0.12em; text-transform: uppercase; margin-bottom: 8px; }
+        .project-img--kabine { background: #f7f7f3; display: flex; align-items: center; justify-content: center; padding: 14px; }
+        .project-img--kabine img { width: 100%; height: 100%; object-fit: contain; }
+        .character-showcase { display: grid; grid-template-columns: minmax(0, 1.15fr) minmax(280px, 0.85fr); gap: 24px; align-items: stretch; margin-top: 38px; }
+        .character-poster { min-height: 360px; border: 2px solid var(--accent-color); background: var(--secondary-dark); box-shadow: 8px 8px 0 rgba(100, 255, 218, 0.2); overflow: hidden; position: relative; }
+        .character-poster::after { content: 'TOUS LES PERSONNAGES'; position: absolute; left: 16px; bottom: 14px; color: var(--accent-color); font: 800 0.8rem/1 'Inter', sans-serif; letter-spacing: 0.16em; text-shadow: 2px 2px 0 var(--primary-dark); }
+        .character-poster img { width: 100%; height: 100%; min-height: 360px; object-fit: cover; }
+        .character-intro { align-self: center; padding: 26px; border-left: 4px solid var(--accent-color); background: rgba(16, 29, 49, 0.82); }
+        .character-intro h3 { margin-bottom: 12px; font-size: 1.6rem; color: var(--accent-color); }
+        .character-intro p { color: var(--text-gray); line-height: 1.8; }
+        .quote-author { display: block; margin-top: 14px; color: var(--accent-color); font-size: 0.8rem; font-weight: 700; letter-spacing: 0.12em; text-transform: uppercase; }
+        .character-gallery { display: grid; grid-template-columns: repeat(4, 1fr); gap: 16px; margin-top: 28px; }
+        .character-frame { border: 2px solid rgba(232, 238, 248, 0.72); background: var(--secondary-dark); padding: 5px; cursor: zoom-in; position: relative; overflow: hidden; transition: var(--transition); }
+        .character-frame:nth-child(2n) { transform: translateY(12px); }
+        .character-frame:hover { border-color: var(--accent-color); transform: translateY(-5px) rotate(-1deg); box-shadow: 5px 5px 0 rgba(100, 255, 218, 0.25); }
+        .character-frame img { width: 100%; height: 230px; object-fit: cover; filter: saturate(1.08) contrast(1.04); }
+        .character-frame span { display: block; padding: 8px 5px 5px; color: var(--accent-color); font: 700 0.68rem/1 'Inter', sans-serif; letter-spacing: 0.1em; text-transform: uppercase; }
+        .character-lightbox { position: fixed; inset: 0; z-index: 2000; display: grid; place-items: center; padding: 30px; background: rgba(3, 8, 18, 0.92); opacity: 0; pointer-events: none; transition: opacity 0.25s ease; }
+        .character-lightbox.is-open { opacity: 1; pointer-events: auto; }
+        .character-lightbox img { max-width: min(92vw, 720px); max-height: 84vh; object-fit: contain; border: 3px solid var(--accent-color); box-shadow: 10px 10px 0 rgba(100, 255, 218, 0.24); }
+        .lightbox-close { position: absolute; top: 22px; right: 28px; border: 2px solid var(--accent-color); background: var(--primary-dark); color: var(--accent-color); width: 44px; height: 44px; font-size: 1.5rem; cursor: pointer; }
+        .lightbox-caption { position: absolute; bottom: 24px; color: var(--white); font-weight: 700; letter-spacing: 0.12em; text-transform: uppercase; }
+        .form-status { display: block; color: var(--accent-color); margin-top: 14px; min-height: 24px; }
+        .back-to-top { position: fixed; right: 24px; bottom: 24px; width: 44px; height: 44px; border: 1px solid var(--accent-color); border-radius: 50%; background: var(--secondary-dark); color: var(--accent-color); cursor: pointer; opacity: 0; pointer-events: none; transition: var(--transition); z-index: 20; }
+        .back-to-top.visible { opacity: 1; pointer-events: auto; }
+        .scroll-progress { position: fixed; top: 0; left: 0; width: 0; height: 3px; z-index: 2001; background: var(--accent-color); box-shadow: 0 0 12px rgba(100, 255, 218, 0.8); transition: width 0.08s linear; }
+        .nav-links a.is-current { color: var(--accent-color); }
+        .nav-links a.is-current::before { opacity: 1; }
+        .project-card { will-change: transform, background; }
+        .btn, .filter-btn, .social-link, .character-poster, .lightbox-close { position: relative; overflow: hidden; }
+        .interaction-ripple { position: absolute; width: 12px; height: 12px; border-radius: 50%; background: rgba(255, 255, 255, 0.45); transform: translate(-50%, -50%) scale(0); pointer-events: none; animation: ripple 0.55s ease-out forwards; }
+        @keyframes ripple { to { transform: translate(-50%, -50%) scale(18); opacity: 0; } }
+        @keyframes mangaDrift { 0%, 100% { margin-top: 0; } 50% { margin-top: -12px; } }
+        .manga-bg { animation: mangaDrift 8s ease-in-out infinite; }
+        [data-reveal] { opacity: 0; transform: translateY(24px); transition: opacity 0.7s ease, transform 0.7s ease; }
+        [data-reveal].revealed { opacity: 1; transform: translateY(0); }
+
+        @media (max-width: 576px) {
+            .hero::before { top: 11%; right: 2%; font-size: 3rem; }
+            .project-filters { margin-top: -10px; }
+            .hero { min-height: auto; padding-top: 125px; padding-bottom: 70px; }
+            .hero-content { gap: 34px; }
+            .hero-text h1 { font-size: 2.3rem; }
+            .hero-logo { width: 170px; height: 170px; }
+            .character-showcase { grid-template-columns: 1fr; }
+            .character-poster, .character-poster img { min-height: 230px; }
+            .character-gallery { grid-template-columns: repeat(2, 1fr); gap: 12px; }
+            .character-frame:nth-child(2n) { transform: none; }
+            .character-frame img { height: 180px; }
+        }
     </style>
 </head>
 <body>
@@ -972,6 +1129,7 @@
                 <li><a href="#home">Accueil</a></li>
                 <li><a href="#about">À propos</a></li>
                 <li><a href="#projects">Projets</a></li>
+                <li><a href="#characters">Personnages</a></li>
                 <li><a href="#skills">Compétences</a></li>
                 <li><a href="#logos">Technologies</a></li>
                 <li><a href="#education">Parcours</a></li>
@@ -979,9 +1137,11 @@
             </ul>
         </div>
     </header>
+    <div class="scroll-progress" id="scrollProgress" aria-hidden="true"></div>
 
     <!-- HERO SECTION -->
     <section id="home" class="hero">
+        <div class="manga-bg manga-bg--home"><img src="image2.webp" alt=""></div>
         <div class="container hero-content">
             <div class="hero-text">
                 <h4 class="accent">Bonjour, je m'appelle</h4>
@@ -999,12 +1159,14 @@
             </div>
             <div class="hero-logo-container">
                 <img src="codeatlas.jpeg" alt="Logo personnel" class="hero-logo" id="heroLogo">
+                <div class="manga-accent manga-accent--hero"><img src="image3.webp" alt="Personnage manga décoratif"></div>
             </div>
         </div>
     </section>
 
     <!-- ABOUT SECTION -->
     <section id="about">
+        <div class="manga-bg manga-bg--about"><img src="image1.webp" alt=""></div>
         <div class="container">
             <h2 class="section-title">À propos</h2>
             <div class="about-container">
@@ -1054,6 +1216,7 @@
                 </div>
                 <div class="about-image">
                     <img src="https://images.unsplash.com/photo-1517697471339-4aa32003c11a?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=600&q=80" alt="Photo d'étudiant en informatique" id="profileImage">
+                    <div class="manga-accent manga-accent--about"><img src="image4.webp" alt="Personnage manga décoratif"></div>
                 </div>
             </div>
         </div>
@@ -1061,27 +1224,62 @@
 
     <!-- PROJECTS SECTION -->
     <section id="projects">
+        <div class="manga-bg manga-bg--projects"><img src="image7.webp" alt=""></div>
         <div class="container">
             <h2 class="section-title">Mes Projets</h2>
-            <div class="projects-container">
+            <p class="logos-title" style="text-align:left;max-width:680px;margin: -25px 0 35px;">Des réalisations concrètes, entre produits numériques, assistance technique et solutions utiles au quotidien.</p>
+            <div class="project-filters" role="group" aria-label="Filtrer les projets">
+                <button class="filter-btn active" data-filter="all">Tous les projets</button>
+                <button class="filter-btn" data-filter="web">Web & produit</button>
+                <button class="filter-btn" data-filter="mobile">Mobile & finance</button>
+                <button class="filter-btn" data-filter="systems">Systèmes</button>
+                <button class="filter-btn" data-filter="hardware">Hardware</button>
+            </div>
+            <div class="projects-container" id="projectsGrid">
                 <!-- PROJET 1 -->
-                <div class="project-card">
+                <div class="project-card" data-category="mobile" data-reveal>
+                    <div class="project-img project-img--kabine">
+                        <img src="kabine_plus.png" alt="Logo de Kabine+, solution de recharges mobiles">
+                    </div>
+                    <div class="project-content">
+                        <span class="project-kicker">Application mobile · 01</span>
+                        <h3 class="project-title">Kabine+</h3>
+                        <p class="project-description">
+                            Une solution ivoirienne de recharges numériques et de services financiers, pensée pour acheter et gérer facilement les forfaits internet et appels depuis une expérience mobile rapide et centralisée.
+                        </p>
+                        <div class="project-tech">
+                            <span class="tech-tag">Mobile UX</span>
+                            <span class="tech-tag">Recharges numériques</span>
+                            <span class="tech-tag">Services financiers</span>
+                            <span class="tech-tag">Côte d'Ivoire</span>
+                        </div>
+                        <div class="project-links">
+                            <a href="#contact" class="project-link">
+                                <i class="fas fa-lightbulb"></i> Découvrir le projet
+                            </a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- PROJET 1 -->
+                <div class="project-card" data-category="web" data-reveal>
                     <div class="project-img">
                         <img src="https://www.transports.gouv.ci/sites/default/files/styles/actu_detail_1030x730/public/actualites/dsc_3531.jpg?itok=WEi0taPF" alt="Bus Sotra a Abidjan" id="project1Image">
                     </div>
                     <div class="project-content">
+                        <span class="project-kicker">Produit numérique · 01</span>
                         <h3 class="project-title">MOBILITÉ YAKRO</h3>
                         <p class="project-description">
-                            Application web de gestion de tâches avec fonctionnalités avancées : 
-                            tableaux Kanban, deadlines, collaboration en équipe et statistiques de productivité.
+                            Une expérience web pensée pour simplifier les déplacements à Yamoussoukro : informations utiles, parcours clair et interface accessible.
                         </p>
                         <div class="project-tech">
                             <span class="tech-tag">HTML</span>
-                            <span class="tech-tag">css</span>
+                            <span class="tech-tag">CSS</span>
+                            <span class="tech-tag">Responsive</span>
                         </div>
                         <div class="project-links">
-                            <a href="#" class="project-link">
-                                <i class="fab fa-github"></i> Code source
+                            <a href="https://github.com/GueuDion" target="_blank" rel="noreferrer" class="project-link">
+                                <i class="fab fa-github"></i> GitHub
                             </a>
                             <a href="https://felisondage.netlify.app/" class="project-link">
                                 <i class="fas fa-external-link-alt"></i> Voir le projet
@@ -1090,11 +1288,12 @@
                     </div>
                 </div>
 
-                <div class="project-card">
+                <div class="project-card" data-category="systems" data-reveal>
                     <div class="project-img">
                         <img src="maintenance.jpeg" alt="Réparation Hardware">
                     </div>
                     <div class="project-content">
+                        <span class="project-kicker">Service technique · 02</span>
                         <h3 class="project-title">Maintenance & Support Informatique</h3>
                         <p class="project-description">
                             Gestion, diagnostic et dépannage de parcs informatiques. Installation de systèmes d'exploitation, 
@@ -1108,8 +1307,8 @@
                             <span class="tech-tag">Diagnostic Hardware</span>
                         </div>
                         <div class="project-links">
-                            <a href="#" class="project-link">
-                                <i class="fab fa-github"></i> Documentation
+                            <a href="#contact" class="project-link">
+                                <i class="fas fa-file-lines"></i> Documentation
                             </a>
                             <a href="#contact" class="project-link">
                                 <i class="fas fa-envelope"></i> Me contacter
@@ -1118,13 +1317,13 @@
                     </div>
                 </div>
 
-                                <!-- PROJET 3 : RÉPARATION DE MATÉRIEL -->
-                <div class="project-card">
+                <div class="project-card" data-category="hardware" data-reveal>
                     <div class="project-img">
                         <!-- Image illustrant la réparation électronique de précision -->
                         <img src="reparation.jpeg" alt="Réparation électronique et hardware" id="project3Image">
                     </div>
                     <div class="project-content">
+                        <span class="project-kicker">Atelier hardware · 03</span>
                         <h3 class="project-title">Réparation Hardware & Micro-soudure</h3>
                         <p class="project-description">
                             Service spécialisé dans le diagnostic matériel et la remise en état de composants. 
@@ -1148,12 +1347,12 @@
                     </div>
                 </div>
 
-                <!-- PROJET 3 -->
-                <div class="project-card">
+                <div class="project-card" data-category="web" data-reveal>
                     <div class="project-img">
-                        <img src="https://images.unsplash.com/photo-1555949963-ff9fe0c870eb?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=600&q=80" alt="Plateforme e-learning" id="project3Image">
+                        <img src="https://images.unsplash.com/photo-1555949963-ff9fe0c870eb?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=600&q=80" alt="Plateforme e-learning" id="project4Image">
                     </div>
                     <div class="project-content">
+                        <span class="project-kicker">Projet académique · 04</span>
                         <h3 class="project-title">EduTech Platform</h3>
                         <p class="project-description">
                             Plateforme d'apprentissage en ligne avec cours interactifs, 
@@ -1180,8 +1379,28 @@
         </div>
     </section>
 
+    <!-- CHARACTER GALLERY -->
+    <section id="characters">
+        <div class="manga-bg manga-bg--characters"><img src="image8.webp" alt=""></div>
+        <div class="container">
+            <h2 class="section-title">Tous les personnages</h2>
+            <p class="logos-title" style="text-align:left;max-width:680px;margin: -25px 0 0;">Une galerie anime scan pour découvrir chaque personnage en gros plan.</p>
+            <div class="character-showcase">
+                <button class="character-poster" type="button" data-lightbox-src="tout les personnage.webp" data-lightbox-title="Tous les personnages" aria-label="Agrandir la planche de tous les personnages">
+                    <img src="tout les personnage.webp" alt="Tous les personnages de la galerie anime">
+                </button>
+                <div class="character-intro">
+                    <h3>Ma détermination</h3>
+                    <p>"Je ne compte pas sur la chance, je suis assez fort pour créer la mienne."</p>
+                    <span class="quote-author">Sung Jin-Woo</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
     <!-- SKILLS SECTION -->
     <section id="skills" class="skills-section">
+        <div class="manga-bg manga-bg--skills"><img src="image3.webp" alt=""></div>
         <div class="container">
             <h2 class="section-title">Mes Compétences</h2>
             <div class="skills-grid">
@@ -1224,11 +1443,19 @@
                     </ul>
                 </div>
             </div>
+            <div class="manga-strip">
+                <img src="image5.webp" alt="Personnage manga en illustration">
+                <div>
+                    <p>"Si la douleur ne me tue pas, elle ne fera que me rendre plus fort."</p>
+                    <span class="quote-author">Sung Jin-Woo</span>
+                </div>
+            </div>
         </div>
     </section>
 
     <!-- LOGOS/TECHNOLOGIES SECTION -->
     <section id="logos" class="logos-section">
+        <div class="manga-bg manga-bg--logos"><img src="image4.webp" alt=""></div>
         <div class="container">
             <h2 class="section-title">Technologies Maîtrisées</h2>
             <p class="logos-title">Frameworks, outils et technologies que j'utilise régulièrement</p>
@@ -1310,6 +1537,7 @@
 
     <!-- EDUCATION & EXPERIENCE -->
     <section id="education">
+        <div class="manga-bg manga-bg--education"><img src="image5.webp" alt=""></div>
         <div class="container">
             <h2 class="section-title">Mon Parcours</h2>
             <div class="timeline">
@@ -1334,6 +1562,7 @@
                     <div class="timeline-content">
                         <h3>Stage Développeur Web</h3>
                         <h4>TechSolutions Paris</h4>
+                        <div class="manga-accent manga-accent--timeline"><img src="image7.webp" alt="Personnage manga décoratif"></div>
                         <p>
                             Développement d'une application interne de gestion des ressources.
                             Technologies utilisées : React, Node.js, MongoDB.
@@ -1359,11 +1588,13 @@
 
     <!-- CONTACT SECTION -->
     <section id="contact">
+        <div class="manga-bg manga-bg--contact"><img src="image8.webp" alt=""></div>
         <div class="container">
             <h2 class="section-title">Contactez-moi</h2>
             <div class="contact-container">
                 <div class="contact-info">
                     <h3>Travaillons ensemble</h3>
+                    <div class="manga-accent manga-accent--contact"><img src="image8.webp" alt="Personnage manga décoratif"></div>
                     <p class="contact-text">
                         Je suis ouvert aux opportunités de stage, aux projets collaboratifs 
                         ou simplement à discuter de technologie et d'innovation. 
@@ -1427,10 +1658,20 @@
     <footer>
         <div class="container">
             <img src="codeatlas.jpeg" alt="Logo personnel" class="footer-logo" id="footerLogo">
-            <p>© 2024 Dion Rodolphe Gueu. Tous droits réservés.</p>
+            <p>© 2026 Dion Rodolphe Gueu. Tous droits réservés.</p>
             <p>Portfolio d'étudiant en informatique - Conçu et développé avec passion</p>
         </div>
     </footer>
+
+    <button class="back-to-top" id="backToTop" aria-label="Retourner en haut">
+        <i class="fas fa-arrow-up"></i>
+    </button>
+
+    <div class="character-lightbox" id="characterLightbox" role="dialog" aria-modal="true" aria-label="Image agrandie" aria-hidden="true">
+        <button class="lightbox-close" id="lightboxClose" type="button" aria-label="Fermer l'image agrandie">&times;</button>
+        <img id="lightboxImage" src="" alt="">
+        <span class="lightbox-caption" id="lightboxCaption"></span>
+    </div>
 
     <script>
         // MENU MOBILE
@@ -1501,9 +1742,6 @@
         
         // Observer les sections
         document.querySelectorAll('section').forEach(section => {
-            section.style.opacity = '0';
-            section.style.transform = 'translateY(20px)';
-            section.style.transition = 'opacity 0.5s ease, transform 0.5s ease';
             observer.observe(section);
         });
         
@@ -1669,6 +1907,196 @@
                 
                 btn.addEventListener('mouseleave', function() {
                     this.style.transform = 'translateY(0)';
+                });
+            });
+        });
+    </script>
+    <script>
+        // FILTRE DES PROJETS
+        const filterButtons = document.querySelectorAll('.filter-btn');
+        const projectCards = document.querySelectorAll('.project-card[data-category]');
+
+        filterButtons.forEach(button => {
+            button.addEventListener('click', () => {
+                const filter = button.dataset.filter;
+
+                filterButtons.forEach(item => item.classList.remove('active'));
+                button.classList.add('active');
+
+                projectCards.forEach(card => {
+                    const shouldShow = filter === 'all' || card.dataset.category === filter;
+                    card.classList.toggle('is-hidden', !shouldShow);
+                    if (shouldShow) {
+                        card.classList.remove('revealed');
+                        requestAnimationFrame(() => card.classList.add('revealed'));
+                    }
+                });
+            });
+        });
+
+        // REVELATION PROGRESSIVE DES ELEMENTS
+        const revealItems = document.querySelectorAll('[data-reveal]');
+        const revealObserver = new IntersectionObserver(entries => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('revealed');
+                    revealObserver.unobserve(entry.target);
+                }
+            });
+        }, { threshold: 0.12 });
+
+        revealItems.forEach(item => revealObserver.observe(item));
+
+        // BOUTON RETOUR EN HAUT ET ACCESSIBILITE DU MENU
+        const backToTop = document.getElementById('backToTop');
+        window.addEventListener('scroll', () => {
+            backToTop.classList.toggle('visible', window.scrollY > 500);
+        }, { passive: true });
+
+        backToTop.addEventListener('click', () => {
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        });
+
+        document.addEventListener('keydown', event => {
+            if (event.key === 'Escape' && navLinks.classList.contains('active')) {
+                navLinks.classList.remove('active');
+                mobileMenuBtn.innerHTML = '<i class="fas fa-bars"></i>';
+            }
+        });
+
+        // GALERIE DES PERSONNAGES ET GROS PLAN
+        const characterLightbox = document.getElementById('characterLightbox');
+        const lightboxImage = document.getElementById('lightboxImage');
+        const lightboxCaption = document.getElementById('lightboxCaption');
+        const lightboxClose = document.getElementById('lightboxClose');
+
+        function closeCharacterLightbox() {
+            characterLightbox.classList.remove('is-open');
+            characterLightbox.setAttribute('aria-hidden', 'true');
+            lightboxImage.src = '';
+        }
+
+        document.querySelectorAll('[data-lightbox-src]').forEach(frame => {
+            frame.addEventListener('click', () => {
+                lightboxImage.src = frame.dataset.lightboxSrc;
+                lightboxImage.alt = frame.dataset.lightboxTitle;
+                lightboxCaption.textContent = frame.dataset.lightboxTitle;
+                characterLightbox.classList.add('is-open');
+                characterLightbox.setAttribute('aria-hidden', 'false');
+                lightboxClose.focus();
+            });
+        });
+
+        lightboxClose.addEventListener('click', closeCharacterLightbox);
+        characterLightbox.addEventListener('click', event => {
+            if (event.target === characterLightbox) closeCharacterLightbox();
+        });
+        document.addEventListener('keydown', event => {
+            if (event.key === 'Escape' && characterLightbox.classList.contains('is-open')) closeCharacterLightbox();
+        });
+    </script>
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            // EFFET MACHINE A ECRIRE SUR LE TITRE PRINCIPAL
+            const heroTitle = document.querySelector('.hero-text h1');
+            if (heroTitle) {
+                const text = heroTitle.textContent;
+                heroTitle.textContent = '';
+                let characterIndex = 0;
+
+                function typeWriter() {
+                    if (characterIndex < text.length) {
+                        heroTitle.textContent += text.charAt(characterIndex);
+                        characterIndex++;
+                        setTimeout(typeWriter, 70);
+                    }
+                }
+
+                setTimeout(typeWriter, 400);
+            }
+
+            // EFFET D'APPARITION DES BLOCS AU DEFILEMENT
+            const scrollRevealObserver = new IntersectionObserver((entries, observerInstance) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.style.opacity = '1';
+                        entry.target.style.transform = 'translateY(0)';
+                        observerInstance.unobserve(entry.target);
+                    }
+                });
+            }, {
+                threshold: 0.15,
+                rootMargin: '0px 0px -50px 0px'
+            });
+
+            const sectionsToAnimate = document.querySelectorAll('.project-card, .about-container > *, .timeline-item, .contact-container > *');
+            sectionsToAnimate.forEach(element => {
+                element.style.opacity = '0';
+                element.style.transform = 'translateY(30px)';
+                element.style.transition = 'opacity 0.6s ease-out, transform 0.6s ease-out';
+                scrollRevealObserver.observe(element);
+            });
+
+            // FERMETURE DU MENU MOBILE APRES UN CLIC
+            const navLinksItems = document.querySelectorAll('.nav-links a');
+            const navLinksMenu = document.querySelector('.nav-links');
+            navLinksItems.forEach(link => {
+                link.addEventListener('click', () => {
+                    navLinksMenu.classList.remove('active');
+                });
+            });
+
+            // LUEUR INTERACTIVE SUR LES CARTES DE PROJETS
+            document.querySelectorAll('.project-card').forEach(card => {
+                card.addEventListener('mousemove', event => {
+                    const rect = card.getBoundingClientRect();
+                    const x = event.clientX - rect.left;
+                    const y = event.clientY - rect.top;
+                    const tiltX = ((y / rect.height) - 0.5) * -3;
+                    const tiltY = ((x / rect.width) - 0.5) * 3;
+                    card.style.background = `radial-gradient(circle 250px at ${x}px ${y}px, rgba(100, 255, 218, 0.08), var(--primary-dark) 80%)`;
+                    card.style.transform = `translateY(-6px) perspective(700px) rotateX(${tiltX}deg) rotateY(${tiltY}deg)`;
+                });
+
+                card.addEventListener('mouseleave', () => {
+                    card.style.background = 'var(--primary-dark)';
+                    card.style.transform = '';
+                });
+            });
+
+            // BARRE DE PROGRESSION ET NAVIGATION ACTIVE
+            const scrollProgress = document.getElementById('scrollProgress');
+            const trackedSections = [...document.querySelectorAll('section[id]')];
+            const trackedLinks = [...document.querySelectorAll('.nav-links a')];
+
+            function updatePageMotion() {
+                const scrollableHeight = document.documentElement.scrollHeight - window.innerHeight;
+                const progress = scrollableHeight > 0 ? (window.scrollY / scrollableHeight) * 100 : 0;
+                scrollProgress.style.width = `${progress}%`;
+
+                const currentSection = trackedSections.reduce((activeSection, section) => {
+                    return window.scrollY + 140 >= section.offsetTop ? section : activeSection;
+                }, trackedSections[0]);
+
+                trackedLinks.forEach(link => {
+                    link.classList.toggle('is-current', link.getAttribute('href') === `#${currentSection.id}`);
+                });
+            }
+
+            window.addEventListener('scroll', updatePageMotion, { passive: true });
+            window.addEventListener('resize', updatePageMotion);
+            updatePageMotion();
+
+            // MICRO-REACTION AU CLIC
+            document.querySelectorAll('.btn, .filter-btn, .social-link, .character-poster, .lightbox-close').forEach(control => {
+                control.addEventListener('click', event => {
+                    const ripple = document.createElement('span');
+                    const rect = control.getBoundingClientRect();
+                    ripple.className = 'interaction-ripple';
+                    ripple.style.left = `${event.clientX - rect.left}px`;
+                    ripple.style.top = `${event.clientY - rect.top}px`;
+                    control.appendChild(ripple);
+                    ripple.addEventListener('animationend', () => ripple.remove(), { once: true });
                 });
             });
         });
