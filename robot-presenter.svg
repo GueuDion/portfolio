@@ -1,0 +1,42 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 500 500" width="100%" height="100%">
+  <style>
+    .robot-body { fill: #1a1a2e; stroke: #64ffda; stroke-width: 3; }
+    .robot-accent { fill: #64ffda; }
+    .robot-screen { fill: #0f0f1a; stroke: #64ffda; stroke-width: 2; }
+    .screen-text { fill: #64ffda; font-family: monospace; font-size: 14px; font-weight: bold; }
+    .presentation-line { stroke: rgba(100, 255, 218, 0.4); stroke-width: 2; stroke-dasharray: 4; }
+    .eye-glow { fill: #ff3366; animation: blink 3s infinite; }
+    @keyframes blink { 0%, 96%, 100% { opacity: 1; } 98% { opacity: 0.1; } }
+    .presenting-arm { transform-box: fill-box; transform-origin: 0 50%; animation: present 2.8s ease-in-out infinite; }
+    .waving-arm { transform-box: fill-box; transform-origin: 100% 20%; animation: wave 3.4s ease-in-out infinite; }
+    @keyframes present { 0%, 100% { transform: rotate(-8deg); } 50% { transform: rotate(14deg); } }
+    @keyframes wave { 0%, 100% { transform: rotate(5deg); } 50% { transform: rotate(-12deg); } }
+    @media (prefers-reduced-motion: reduce) {
+      .eye-glow, .presenting-arm, .waving-arm { animation: none; }
+    }
+  </style>
+  <g transform="translate(20, 20)">
+    <g transform="translate(40, 120)">
+      <rect x="65" y="220" width="25" height="15" rx="5" class="robot-body" />
+      <rect x="110" y="220" width="25" height="15" rx="5" class="robot-body" />
+      <rect x="73" y="180" width="9" height="45" class="robot-body" />
+      <rect x="118" y="180" width="9" height="45" class="robot-body" />
+      <rect x="55" y="90" width="90" height="95" rx="12" class="robot-body" />
+      <rect x="70" y="105" width="60" height="50" rx="6" class="robot-screen" />
+      <text x="78" y="125" class="screen-text">&lt;/&gt; DEV</text>
+      <line x1="78" y1="138" x2="115" y2="138" stroke="#64ffda" stroke-width="2" />
+      <rect x="32" y="100" width="16" height="60" rx="8" class="robot-body waving-arm" transform="rotate(10 40 100)" />
+      <rect x="62" y="15" width="76" height="65" rx="12" class="robot-body" />
+      <line x1="100" y1="15" x2="100" y2="2" class="robot-accent" stroke-width="3" />
+      <circle cx="100" cy="2" r="5" class="robot-accent" />
+      <circle cx="83" cy="42" r="7" class="eye-glow" />
+      <circle cx="117" cy="42" r="7" class="eye-glow" />
+      <line x1="85" y1="60" x2="115" y2="60" stroke="#64ffda" stroke-width="2" stroke-linecap="round" />
+      <g transform="translate(145, 95)" class="presenting-arm">
+        <rect x="0" y="0" width="16" height="55" rx="8" class="robot-body" transform="rotate(-35 0 0)" />
+        <rect x="25" y="-30" width="16" height="45" rx="8" class="robot-body" transform="rotate(15 25 -30)" />
+        <circle cx="45" cy="-25" r="4" fill="#ff3366" />
+      </g>
+    </g>
+  </g>
+</svg>

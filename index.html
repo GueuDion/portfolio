@@ -141,6 +141,7 @@
             display: flex;
             align-items: center;
             gap: 15px;
+            flex-shrink: 0;
         }
 
         /* Style pour le logo personnel - appliqué automatiquement */
@@ -169,10 +170,11 @@
             display: flex;
             list-style: none;
             align-items: center;
+            order: 2;
         }
 
         .nav-links li {
-            margin-left: 2.5rem;
+            margin-left: 1.2rem;
         }
 
         .nav-links a {
@@ -208,6 +210,30 @@
             font-size: 1.8rem;
             cursor: pointer;
             padding: 5px;
+            order: 4;
+        }
+
+        .theme-toggle {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            width: 42px;
+            height: 42px;
+            margin-left: 18px;
+            border: 1px solid var(--accent-color);
+            border-radius: 50%;
+            background: transparent;
+            color: var(--accent-color);
+            cursor: pointer;
+            transition: var(--transition);
+            order: 3;
+            flex-shrink: 0;
+        }
+
+        .theme-toggle:hover {
+            background: var(--accent-color);
+            color: var(--primary-dark);
+            transform: rotate(12deg);
         }
 
         /* HERO SECTION */
@@ -246,10 +272,61 @@
         }
 
         .hero-text p {
-            font-size: 1.1rem;
-            max-width: 540px;
+            font-size: 0.92rem;
+            max-width: 620px;
             margin-bottom: 2.5rem;
             color: var(--text-gray);
+            line-height: 1.65;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .hero-text p .hero-logo-inline {
+            width: 140px;
+            height: 140px;
+            margin: 0;
+            object-fit: contain;
+            display: block;
+            flex: 0 0 140px;
+        }
+
+        .hero-intro-copy {
+            display: block;
+            max-width: 470px;
+        }
+
+        .about-presenter {
+            width: 220px;
+            height: 220px;
+            margin: 0 auto 24px;
+        }
+
+        .about-presenter img {
+            width: 100%;
+            height: 100%;
+            object-fit: contain;
+        }
+
+        .contact-presenter {
+            width: 150px;
+            height: 150px;
+            margin: 0 0 14px;
+        }
+
+        .contact-presenter img {
+            width: 100%;
+            height: 100%;
+            object-fit: contain;
+        }
+
+        .contact-text {
+            max-width: 360px;
+            margin-left: 0;
+            margin-right: 0;
+            font-size: 0.78rem;
+            line-height: 1.5;
+            text-align: left;
         }
 
         .hero-btns {
@@ -922,7 +999,7 @@
                 width: 200px;
                 height: 200px;
             }
-            
+
             .timeline::before {
                 left: 20px;
             }
@@ -973,6 +1050,22 @@
             background-image: radial-gradient(rgba(100, 255, 218, 0.08) 1px, transparent 1px), linear-gradient(135deg, rgba(255, 255, 255, 0.025), transparent 42%);
             background-size: 12px 12px, 100% 100%;
         }
+
+        body.light-mode {
+            --primary-dark: #f4f7f7;
+            --secondary-dark: #ffffff;
+            --accent-color: #087f72;
+            --accent-strong: #087f72;
+            --text-light: #20333a;
+            --text-gray: #52656c;
+            --white: #102329;
+            --box-shadow: 0 24px 60px rgba(28, 55, 62, 0.14);
+            background-image: radial-gradient(rgba(8, 127, 114, 0.08) 1px, transparent 1px), linear-gradient(135deg, rgba(8, 127, 114, 0.04), transparent 42%);
+        }
+
+        body.light-mode header { background: rgba(244, 247, 247, 0.86); }
+        body.light-mode .nav-links { background-color: var(--secondary-dark); }
+        body.light-mode .form-control { background-color: rgba(8, 127, 114, 0.05); border-color: rgba(32, 51, 58, 0.18); }
 
         header {
             background: rgba(8, 17, 31, 0.78);
@@ -1029,6 +1122,8 @@
         }
 
         .hero-text, .hero-logo-container { position: relative; z-index: 1; }
+        .hero-logo-container { order: 1; }
+        .hero-text { order: 2; }
         .manga-accent { border: 2px solid var(--accent-color); background: var(--secondary-dark); box-shadow: 5px 5px 0 rgba(100, 255, 218, 0.2); overflow: hidden; }
         .manga-accent img { width: 100%; height: 100%; object-fit: cover; }
         .manga-accent--hero { position: absolute; width: 92px; height: 132px; right: -22px; top: 4px; transform: rotate(8deg); z-index: 2; }
@@ -1062,6 +1157,16 @@
         .filter-btn { padding: 9px 16px; border: 2px solid rgba(255,255,255,0.35); border-radius: 2px; background: transparent; color: var(--text-gray); cursor: pointer; font: 700 0.78rem 'Inter', sans-serif; text-transform: uppercase; transition: var(--transition); }
         .filter-btn:hover, .filter-btn.active { background: var(--accent-color); border-color: var(--accent-color); color: var(--primary-dark); }
         .project-card.is-hidden { display: none; }
+        .github-section { background-color: var(--secondary-dark); }
+        .github-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 22px; margin-top: 36px; }
+        .github-card { padding: 22px; border: 2px solid rgba(232, 238, 248, 0.7); background: var(--primary-dark); box-shadow: 6px 6px 0 rgba(0, 0, 0, 0.22); transition: var(--transition); }
+        .github-card:hover { border-color: var(--accent-color); transform: translateY(-5px); }
+        .github-card h3 { font-size: 1.2rem; margin-bottom: 10px; overflow-wrap: anywhere; }
+        .github-card p { color: var(--text-gray); font-size: 0.9rem; min-height: 45px; }
+        .github-meta { display: flex; gap: 16px; margin: 18px 0; color: var(--text-gray); font-size: 0.82rem; }
+        .github-meta i { color: var(--accent-color); margin-right: 5px; }
+        .github-status { color: var(--text-gray); }
+        .github-status.is-error { color: #ff9b8f; }
         .project-kicker { color: var(--accent-strong); font-size: 0.75rem; font-weight: 700; letter-spacing: 0.12em; text-transform: uppercase; margin-bottom: 8px; }
         .project-img--kabine { background: #f7f7f3; display: flex; align-items: center; justify-content: center; padding: 14px; }
         .project-img--kabine img { width: 100%; height: 100%; object-fit: contain; }
@@ -1099,6 +1204,25 @@
         [data-reveal] { opacity: 0; transform: translateY(24px); transition: opacity 0.7s ease, transform 0.7s ease; }
         [data-reveal].revealed { opacity: 1; transform: translateY(0); }
 
+        /* Visuel de présentation transparent */
+        .personal-logo,
+        .hero-logo,
+        .footer-logo {
+            object-fit: contain;
+            border: 0;
+            border-radius: 0;
+            background: transparent;
+            filter: drop-shadow(0 12px 12px rgba(0, 0, 0, 0.24));
+            mix-blend-mode: darken;
+        }
+
+        .personal-logo { width: 48px; height: 48px; }
+        .hero-logo { box-shadow: none; }
+        .hero-logo-container .manga-accent { mix-blend-mode: normal; }
+        .about-image { background: transparent; box-shadow: none; }
+        .about-image > img { object-fit: contain; }
+        .footer-logo { width: 72px; height: 72px; }
+
         @media (max-width: 576px) {
             .hero::before { top: 11%; right: 2%; font-size: 3rem; }
             .project-filters { margin-top: -10px; }
@@ -1119,20 +1243,24 @@
     <header>
         <div class="container header-container">
             <a href="#home" class="logo-container">
-                <img src="codeatlas.jpeg" alt="Logo personnel" class="personal-logo" id="headerLogo">
+                <img src="robot-presenter.svg" alt="Robot présentant le portfolio" class="personal-logo" id="headerLogo">
                 <span class="logo-text">CodeAtlas</span>
             </a>
-            <button class="mobile-menu-btn" id="mobileMenuBtn" aria-label="Menu mobile">
+            <button class="theme-toggle" id="themeToggle" type="button" aria-label="Activer le mode clair" title="Changer de thème">
+                <i class="fas fa-sun" aria-hidden="true"></i>
+            </button>
+            <button class="mobile-menu-btn" id="mobileMenuBtn" type="button" aria-label="Ouvrir le menu mobile" aria-expanded="false" aria-controls="navLinks">
                 <i class="fas fa-bars"></i>
             </button>
             <ul class="nav-links" id="navLinks">
                 <li><a href="#home">Accueil</a></li>
                 <li><a href="#about">À propos</a></li>
-                <li><a href="#projects">Projets</a></li>
-                <li><a href="#characters">Personnages</a></li>
                 <li><a href="#skills">Compétences</a></li>
                 <li><a href="#logos">Technologies</a></li>
+                <li><a href="#projects">Projets</a></li>
+                <li><a href="#github">GitHub</a></li>
                 <li><a href="#education">Parcours</a></li>
+                <li><a href="#characters">Galerie</a></li>
                 <li><a href="#contact">Contact</a></li>
             </ul>
         </div>
@@ -1147,19 +1275,14 @@
                 <h4 class="accent">Bonjour, je m'appelle</h4>
                 <h1>Dion Rodolphe Gueu</h1>
                 <h2>Étudiant en Développement Informatique</h2>
-                <p>
-                    Je suis passionné par la création de solutions numériques innovantes. 
-                    Actuellement en formation, je me spécialise dans le développement web full-stack, 
-                    l'intelligence artificielle et les technologies émergentes.
+                <p style="display: flex; align-items: center; gap: 10px;">
+                    <img src="robot-presenter.svg" alt="Robot présentant le portfolio" id="heroLogo" style="width: 40px; height: 40px; flex-shrink: 0;">
+                    <span>Je suis passionné par la création de solutions numériques innovantes. Actuellement en formation, je me spécialise dans le développement web full-stack, l'intelligence artificielle et les technologies émergentes.</span>
                 </p>
                 <div class="hero-btns">
                     <a href="#projects" class="btn">Voir mes projets</a>
                     <a href="#contact" class="btn">Me contacter</a>
                 </div>
-            </div>
-            <div class="hero-logo-container">
-                <img src="codeatlas.jpeg" alt="Logo personnel" class="hero-logo" id="heroLogo">
-                <div class="manga-accent manga-accent--hero"><img src="image3.webp" alt="Personnage manga décoratif"></div>
             </div>
         </div>
     </section>
@@ -1171,6 +1294,9 @@
             <h2 class="section-title">À propos</h2>
             <div class="about-container">
                 <div class="about-text">
+                    <div class="about-presenter">
+                        <img src="robot-presenter.svg" alt="Robot présentant le profil de Dion" id="profileImage" loading="lazy">
+                    </div>
                     <p>
                         Étudiant en Licence informatique à l'Université Internationale de yamossoukro, 
                         je me passionne pour le développement logiciel et les nouvelles technologies. 
@@ -1213,10 +1339,6 @@
                             <span>Git & Méthodes Agiles</span>
                         </div>
                     </div>
-                </div>
-                <div class="about-image">
-                    <img src="https://images.unsplash.com/photo-1517697471339-4aa32003c11a?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=600&q=80" alt="Photo d'étudiant en informatique" id="profileImage">
-                    <div class="manga-accent manga-accent--about"><img src="image4.webp" alt="Personnage manga décoratif"></div>
                 </div>
             </div>
         </div>
@@ -1376,6 +1498,20 @@
                     </div>
                 </div>
             </div>
+        </div>
+    </section>
+
+    <!-- GITHUB ACTIVITY -->
+    <section id="github" class="github-section">
+        <div class="container">
+            <h2 class="section-title">Activité GitHub</h2>
+            <p class="logos-title" style="text-align:left;max-width:680px;margin: -25px 0 0;">Mes dépôts publics récents, récupérés automatiquement depuis GitHub.</p>
+            <div class="github-grid" id="githubGrid" aria-live="polite">
+                <p class="github-status">Chargement des derniers dépôts...</p>
+            </div>
+            <a href="https://github.com/GueuDion" target="_blank" rel="noreferrer" class="btn" style="margin-top:30px;">
+                <i class="fab fa-github" aria-hidden="true"></i> Voir mon profil GitHub
+            </a>
         </div>
     </section>
 
@@ -1541,17 +1677,38 @@
         <div class="container">
             <h2 class="section-title">Mon Parcours</h2>
             <div class="timeline">
-                <!-- ÉDUCATION 1 -->
+                <!-- LICENCE 1 -->
                 <div class="timeline-item">
-                    <div class="timeline-date">2024 - Présent</div>
+                    <div class="timeline-date">2024 - 2025</div>
                     <div class="timeline-content">
-                        <h3>Licence Informatique</h3>
+                        <h3>Licence 1 Informatique</h3>
                         <h4>Université Internationale de Yamoussoukro</h4>
                         <p>
-                            Actuellement en deuxième année de licence informatique, 
-                            avec une spécialisation en développement web et mobile. 
-                            Cours principaux : Structures de données, Algorithmique, 
-                            Développement Full-Stack, Intelligence Artificielle.
+                            Première année de licence, avec l'acquisition des fondamentaux en algorithmique, programmation et structures de données.
+                        </p>
+                    </div>
+                </div>
+
+                <!-- LICENCE 2 -->
+                <div class="timeline-item">
+                    <div class="timeline-date">2025 - 2026</div>
+                    <div class="timeline-content">
+                        <h3>Licence 2 Informatique</h3>
+                        <h4>Université Internationale de Yamoussoukro</h4>
+                        <p>
+                            Deuxième année consacrée au développement web et mobile, aux bases de données et aux architectures logicielles.
+                        </p>
+                    </div>
+                </div>
+
+                <!-- LICENCE 3 -->
+                <div class="timeline-item">
+                    <div class="timeline-date">2026 - 2027</div>
+                    <div class="timeline-content">
+                        <h3>Licence 3 Informatique</h3>
+                        <h4>Université Internationale de Yamoussoukro</h4>
+                        <p>
+                            Troisième année prévue avec une spécialisation en développement full-stack et en intelligence artificielle.
                         </p>
                     </div>
                 </div>
@@ -1594,7 +1751,9 @@
             <div class="contact-container">
                 <div class="contact-info">
                     <h3>Travaillons ensemble</h3>
-                    <div class="manga-accent manga-accent--contact"><img src="image8.webp" alt="Personnage manga décoratif"></div>
+                    <div class="contact-presenter">
+                        <img src="robot-presenter.svg" alt="Robot présentant le contact" loading="lazy">
+                    </div>
                     <p class="contact-text">
                         Je suis ouvert aux opportunités de stage, aux projets collaboratifs 
                         ou simplement à discuter de technologie et d'innovation. 
@@ -1630,24 +1789,27 @@
                     </div>
                 </div>
                 <div class="contact-form">
-                    <form id="contactForm">
+                    <form id="contactForm" name="contact" method="POST" action="/" data-netlify="true" netlify-honeypot="bot-field">
+                        <input type="hidden" name="form-name" value="contact">
+                        <p hidden><label>Ne pas remplir : <input name="bot-field"></label></p>
                         <div class="form-group">
                             <label for="name">Nom complet</label>
-                            <input type="text" id="name" class="form-control" required>
+                            <input type="text" id="name" name="name" class="form-control" minlength="2" required>
                         </div>
                         <div class="form-group">
                             <label for="email">Adresse email</label>
-                            <input type="email" id="email" class="form-control" required>
+                            <input type="email" id="email" name="email" class="form-control" required>
                         </div>
                         <div class="form-group">
                             <label for="subject">Sujet</label>
-                            <input type="text" id="subject" class="form-control" required>
+                            <input type="text" id="subject" name="subject" class="form-control" minlength="3" required>
                         </div>
                         <div class="form-group">
                             <label for="message">Message</label>
-                            <textarea id="message" class="form-control" required></textarea>
+                            <textarea id="message" name="message" class="form-control" minlength="20" required></textarea>
                         </div>
                         <button type="submit" class="btn">Envoyer le message</button>
+                        <span class="form-status" id="formStatus" role="status" aria-live="polite"></span>
                     </form>
                 </div>
             </div>
@@ -1657,7 +1819,7 @@
     <!-- FOOTER -->
     <footer>
         <div class="container">
-            <img src="codeatlas.jpeg" alt="Logo personnel" class="footer-logo" id="footerLogo">
+            <img src="robot-presenter.svg" alt="Robot présentant le portfolio" class="footer-logo" id="footerLogo">
             <p>© 2026 Dion Rodolphe Gueu. Tous droits réservés.</p>
             <p>Portfolio d'étudiant en informatique - Conçu et développé avec passion</p>
         </div>
@@ -1677,10 +1839,23 @@
         // MENU MOBILE
         const mobileMenuBtn = document.getElementById('mobileMenuBtn');
         const navLinks = document.getElementById('navLinks');
+        const themeToggle = document.getElementById('themeToggle');
+
+        const setTheme = (isLight) => {
+            document.body.classList.toggle('light-mode', isLight);
+            themeToggle.setAttribute('aria-label', isLight ? 'Activer le mode sombre' : 'Activer le mode clair');
+            themeToggle.innerHTML = `<i class="fas fa-${isLight ? 'moon' : 'sun'}" aria-hidden="true"></i>`;
+            localStorage.setItem('portfolio-theme', isLight ? 'light' : 'dark');
+        };
+
+        setTheme(localStorage.getItem('portfolio-theme') === 'light');
+        themeToggle.addEventListener('click', () => setTheme(!document.body.classList.contains('light-mode')));
         
         mobileMenuBtn.addEventListener('click', () => {
-            navLinks.classList.toggle('active');
-            mobileMenuBtn.innerHTML = navLinks.classList.contains('active') 
+            const isOpen = navLinks.classList.toggle('active');
+            mobileMenuBtn.setAttribute('aria-expanded', String(isOpen));
+            mobileMenuBtn.setAttribute('aria-label', isOpen ? 'Fermer le menu mobile' : 'Ouvrir le menu mobile');
+            mobileMenuBtn.innerHTML = isOpen
                 ? '<i class="fas fa-times"></i>' 
                 : '<i class="fas fa-bars"></i>';
         });
@@ -1689,6 +1864,8 @@
         document.querySelectorAll('.nav-links a').forEach(link => {
             link.addEventListener('click', () => {
                 navLinks.classList.remove('active');
+                mobileMenuBtn.setAttribute('aria-expanded', 'false');
+                mobileMenuBtn.setAttribute('aria-label', 'Ouvrir le menu mobile');
                 mobileMenuBtn.innerHTML = '<i class="fas fa-bars"></i>';
             });
         });
@@ -1707,23 +1884,84 @@
         
         // FORMULAIRE DE CONTACT
         const contactForm = document.getElementById('contactForm');
+        const formStatus = document.getElementById('formStatus');
         contactForm.addEventListener('submit', (e) => {
+            const fields = [...contactForm.querySelectorAll('input:not([type="hidden"]), textarea')];
+            const invalidField = fields.find(field => !field.checkValidity());
+
+            if (invalidField) {
+                e.preventDefault();
+                invalidField.reportValidity();
+                formStatus.textContent = 'Vérifie les champs indiqués avant l’envoi.';
+                return;
+            }
+
             e.preventDefault();
-            
-            // Simulation d'envoi
-            const btn = contactForm.querySelector('button');
-            const originalText = btn.textContent;
-            
-            btn.textContent = 'Envoi en cours...';
-            btn.disabled = true;
-            
-            setTimeout(() => {
-                alert('Message envoyé avec succès ! Merci pour votre contact.');
-                contactForm.reset();
-                btn.textContent = originalText;
-                btn.disabled = false;
-            }, 1500);
+            const submitButton = contactForm.querySelector('button[type="submit"]');
+            submitButton.disabled = true;
+            formStatus.textContent = 'Formulaire valide. Envoi en cours...';
+
+            fetch(contactForm.action, {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+                body: new URLSearchParams(new FormData(contactForm)).toString()
+            })
+                .then(response => {
+                    if (!response.ok) throw new Error('Envoi impossible');
+                    contactForm.reset();
+                    formStatus.textContent = 'Message envoyé. Merci pour votre contact !';
+                })
+                .catch(() => {
+                    formStatus.textContent = 'L’envoi a échoué. Réessaie ou écris directement à dionrodolphegueu@gmail.com.';
+                })
+                .finally(() => {
+                    submitButton.disabled = false;
+                });
         });
+
+        contactForm.addEventListener('invalid', () => {
+            formStatus.textContent = 'Vérifie les champs indiqués avant l’envoi.';
+        }, true);
+
+        // DEPOTS GITHUB RECENTS
+        const githubGrid = document.getElementById('githubGrid');
+        const githubUser = 'GueuDion';
+
+        const escapeHtml = (value = '') => value.replace(/[&<>'"]/g, character => ({
+            '&': '&amp;', '<': '&lt;', '>': '&gt;', "'": '&#39;', '"': '&quot;'
+        }[character]));
+
+        const loadGithubRepositories = async () => {
+            try {
+                const response = await fetch(`https://api.github.com/users/${githubUser}/repos?sort=updated&per_page=6`);
+                if (!response.ok) throw new Error('GitHub indisponible');
+                const repositories = await response.json();
+
+                if (!repositories.length) {
+                    githubGrid.innerHTML = '<p class="github-status">Aucun dépôt public à afficher pour le moment.</p>';
+                    return;
+                }
+
+                githubGrid.innerHTML = repositories.map(repository => `
+                    <article class="github-card" data-reveal>
+                        <h3>${escapeHtml(repository.name)}</h3>
+                        <p>${escapeHtml(repository.description || 'Dépôt sans description.')}</p>
+                        <div class="github-meta">
+                            <span><i class="fas fa-star" aria-hidden="true"></i>${repository.stargazers_count}</span>
+                            <span><i class="fas fa-code-branch" aria-hidden="true"></i>${repository.forks_count}</span>
+                            <span>${escapeHtml(repository.language || 'Code')}</span>
+                        </div>
+                        <a href="${repository.html_url}" target="_blank" rel="noreferrer" class="project-link">
+                            <i class="fab fa-github" aria-hidden="true"></i> Ouvrir le dépôt
+                        </a>
+                    </article>
+                `).join('');
+            } catch (error) {
+                githubGrid.innerHTML = '<p class="github-status is-error">Les dépôts GitHub ne peuvent pas être chargés pour le moment. Consulte directement mon profil.</p>';
+            }
+        };
+
+        loadGithubRepositories();
         
         // ANIMATION AU DÉFILEMENT
         const observerOptions = {
